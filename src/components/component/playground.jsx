@@ -19,15 +19,15 @@ const Playground = () => {
             </div>
 
             <div className="grid grid-cols-3 gap-6 mb-6">
-                <div>
+                <div className='text-start'>
                     <p className="text-sm text-gray-500">Passenger Name</p>
                     <p className="text-lg font-semibold">John Doe</p>
                 </div>
-                <div>
+                <div className='text-center'>
                     <p className="text-sm text-gray-500">Flight</p>
                     <p className="text-lg font-semibold">SH 789</p>
                 </div>
-                <div>
+                <div className='text-end ml-auto'>
                     <p className="text-sm text-gray-500">Date</p>
                     <p className="text-lg font-semibold">15 JUL 2024</p>
                 </div>
