@@ -48,19 +48,19 @@ const Playground = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-4">
-                <div>
+                <div className='text-left'>
                     <p className="text-sm text-gray-500">Gate</p>
                     <p className="text-lg font-semibold">A22</p>
                 </div>
-                <div>
+                <div className='text-center'>
                     <p className="text-sm text-gray-500">Seat</p>
                     <p className="text-lg font-semibold">18A</p>
                 </div>
-                <div>
+                <div className='text-center'>
                     <p className="text-sm text-gray-500">Class</p>
                     <p className="text-lg font-semibold">Economy</p>
                 </div>
-                <div>
+                <div className='text-right'>
                     <p className="text-sm text-gray-500">Boarding Time</p>
                     <p className="text-lg font-semibold">09:30 AM</p>
                 </div>
