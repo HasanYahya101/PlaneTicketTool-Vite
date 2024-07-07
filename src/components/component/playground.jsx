@@ -220,9 +220,9 @@ const Playground = () => {
                                             <SelectValue placeholder="Select class" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="economy">Economy</SelectItem>
-                                            <SelectItem value="business">Business</SelectItem>
-                                            <SelectItem value="first">First Class</SelectItem>
+                                            <SelectItem value="Economy">Economy</SelectItem>
+                                            <SelectItem value="Business">Business Class</SelectItem>
+                                            <SelectItem value="First">First Class</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
