@@ -35,8 +35,8 @@ import {
 const Playground = () => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
-    const hours = Array.from({ length: 12 }, (_, i) => i + 1);
-    const minutes = Array.from({ length: 60 }, (_, i) => i);
+    const hours = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
+    const minutes = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'));
 
     const [passengerName, setPassengerName] = React.useState('John Doe');
     const [flightNumber, setFlightNumber] = React.useState('SH 789');
@@ -60,10 +60,6 @@ const Playground = () => {
     useEffect(() => {
         setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
     }, [boardingHour, boardingMinute, boardingAmpm]);
-
-    const handleTimeSelection = () => {
-        setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -237,11 +233,12 @@ const Playground = () => {
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="class">Class</Label>
-                                    <Select name="class" onValueChange={(value) => setClassType(value)}>
+                                    <Select defaultValue={`${classType}`} name="class" onValueChange={(value) => setClassType(value)}>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Select class" />
+                                            <SelectValue placeholder={`${classType}`} />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent
+                                        >
                                             <SelectItem value="Economy">Economy</SelectItem>
                                             <SelectItem value="Business">Business Class</SelectItem>
                                             <SelectItem value="First">First Class</SelectItem>
@@ -258,7 +255,7 @@ const Playground = () => {
                                             <div className="grid gap-4">
                                                 <h4 className="font-medium leading-none">Select Time</h4>
                                                 <div className="grid grid-cols-3 gap-2">
-                                                    <Select onValueChange={setBoardingHour}
+                                                    <Select onValueChange={setBoardingHour} defaultValue={boardingHour}
                                                     >
                                                         <SelectTrigger>
                                                             <SelectValue placeholder={`${boardingHour}`} />
@@ -271,7 +268,7 @@ const Playground = () => {
                                                             ))}
                                                         </SelectContent>
                                                     </Select>
-                                                    <Select onValueChange={setBoardingMinute}
+                                                    <Select onValueChange={setBoardingMinute} defaultValue={boardingMinute}
                                                     >
                                                         <SelectTrigger>
                                                             <SelectValue placeholder={`${boardingMinute}`} />
@@ -284,7 +281,7 @@ const Playground = () => {
                                                             ))}
                                                         </SelectContent>
                                                     </Select>
-                                                    <Select onValueChange={setBoardingAmpm}
+                                                    <Select onValueChange={setBoardingAmpm} defaultValue={boardingAmpm}
                                                     >
                                                         <SelectTrigger>
                                                             <SelectValue placeholder={`${boardingAmpm}`} />
@@ -295,7 +292,6 @@ const Playground = () => {
                                                         </SelectContent>
                                                     </Select>
                                                 </div>
-                                                {/*<Button onClick={handleTimeSelection}>Confirm</Button>*/}
                                             </div>
                                         </PopoverContent>
                                     </Popover>
