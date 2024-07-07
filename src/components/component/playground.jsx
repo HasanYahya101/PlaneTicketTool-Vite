@@ -163,7 +163,7 @@ const Playground = () => {
                             <DialogDescription>Enter or edit your flight details below</DialogDescription>
                         </DialogHeader>
                         <ScrollArea className='h-full'>
-                            <form onSubmit={handleSubmit} className="space-y-4 mr-2.5 ml-2.5">
+                            <form onSubmit={handleSubmit} className="space-y-4 mr-4 ml-4 mb-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="passengerName">Passenger Name</Label>
                                     <Input
