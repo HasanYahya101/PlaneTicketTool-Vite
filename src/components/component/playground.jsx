@@ -126,7 +126,7 @@ const Playground = () => {
                     <DialogContent className="h-[86vh]">
                         <DialogHeader>
                             <DialogTitle>Flight Boarding Pass</DialogTitle>
-                            <DialogDescription>Enter your flight details below</DialogDescription>
+                            <DialogDescription>Enter or edit your flight details below</DialogDescription>
                         </DialogHeader>
                         <ScrollArea className='h-full'>
                             <form onSubmit={handleSubmit} className="space-y-4 mr-2.5 ml-2.5">
