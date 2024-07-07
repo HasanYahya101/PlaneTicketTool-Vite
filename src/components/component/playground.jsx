@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Plane, ArrowRight } from 'lucide-react';
+import { Plane, ArrowRight, Edit, Download } from 'lucide-react';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
@@ -168,7 +168,10 @@ const Playground = () => {
             <div className='flex justify-center'>
                 <Dialog>
                     <DialogTrigger>
-                        <Button className='mr-2'>Edit</Button>
+                        <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
+                            <Edit className="w-5 h-5 mr-2" />
+                            Edit Ticket
+                        </Button>
                     </DialogTrigger>
                     <DialogContent className="h-[86vh] mt-1 mb-2">
                         <DialogHeader>
@@ -456,7 +459,12 @@ const Playground = () => {
 
                 </Dialog>
 
-                <Button className='ml-2'>Download</Button>
+                <Button
+                    className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md ml-2"
+                >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download Ticket
+                </Button>
             </div>
         </div>
     );
