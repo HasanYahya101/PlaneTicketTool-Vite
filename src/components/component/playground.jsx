@@ -481,7 +481,7 @@ const Playground = () => {
                                 Edit Ticket
                             </Button>
                         </DrawerTrigger>
-                        <DrawerContent className="h-[70vh] mt-1 mb-2">
+                        <DrawerContent className="h-[86vh] mt-1 mb-2">
                             <DrawerHeader>
                                 <DrawerTitle>Flight Boarding Pass</DrawerTitle>
                                 <DrawerDescription>
