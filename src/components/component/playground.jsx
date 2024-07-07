@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Plane, ArrowRight } from 'lucide-react';
 import {
     Drawer,
@@ -26,9 +26,17 @@ import { Input } from "@/components/ui/input";
 import useMediaQuery from './mediaHook';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Playground = () => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    const hours = Array.from({ length: 12 }, (_, i) => i + 1);
+    const minutes = Array.from({ length: 60 }, (_, i) => i);
 
     const [passengerName, setPassengerName] = React.useState('John Doe');
     const [flightNumber, setFlightNumber] = React.useState('SH 789');
@@ -42,6 +50,20 @@ const Playground = () => {
     const [ticketNo, setTicketNo] = React.useState('AB123456');
     const [flightLeave, setFlightLeave] = React.useState('10:00 AM');
     const [flightArrive, setFlightArrive] = React.useState('10:00 PM');
+
+    const [dateField, setDateField] = React.useState(new Date(2024, 6, 15));
+
+    const [boardingHour, setBoardingHour] = React.useState('09');
+    const [boardingMinute, setBoardingMinute] = React.useState('30');
+    const [boardingAmpm, setBoardingAmpm] = React.useState('AM');
+
+    useEffect(() => {
+        setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
+    }, [boardingHour, boardingMinute, boardingAmpm]);
+
+    const handleTimeSelection = () => {
+        setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -228,14 +250,55 @@ const Playground = () => {
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="boardingTime">Boarding Time</Label>
-                                    <Input
-                                        id="boardingTime"
-                                        name="boardingTime"
-                                        type="time"
-                                        value={boardingTime}
-                                        onChange={(e) => setBoardingTime(e.target.value)}
-                                        required
-                                    />
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button variant="outline" className="w-full">{boardingTime}</Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-80">
+                                            <div className="grid gap-4">
+                                                <h4 className="font-medium leading-none">Select Time</h4>
+                                                <div className="grid grid-cols-3 gap-2">
+                                                    <Select onValueChange={setBoardingHour}
+                                                    >
+                                                        <SelectTrigger>
+                                                            <SelectValue placeholder={`${boardingHour}`} />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            {hours.map((h) => (
+                                                                <SelectItem key={h} value={h.toString()}>
+                                                                    {h}
+                                                                </SelectItem>
+                                                            ))}
+                                                        </SelectContent>
+                                                    </Select>
+                                                    <Select onValueChange={setBoardingMinute}
+                                                    >
+                                                        <SelectTrigger>
+                                                            <SelectValue placeholder={`${boardingMinute}`} />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            {minutes.map((m) => (
+                                                                <SelectItem key={m} value={m.toString().padStart(2, '0')}>
+                                                                    {m.toString().padStart(2, '0')}
+                                                                </SelectItem>
+                                                            ))}
+                                                        </SelectContent>
+                                                    </Select>
+                                                    <Select onValueChange={setBoardingAmpm}
+                                                    >
+                                                        <SelectTrigger>
+                                                            <SelectValue placeholder={`${boardingAmpm}`} />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem value="AM">AM</SelectItem>
+                                                            <SelectItem value="PM">PM</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </div>
+                                                {/*<Button onClick={handleTimeSelection}>Confirm</Button>*/}
+                                            </div>
+                                        </PopoverContent>
+                                    </Popover>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
