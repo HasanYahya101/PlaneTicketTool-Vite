@@ -30,25 +30,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const Playground = () => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
-    const [formData, setFormData] = React.useState({
-        passengerName: '',
-        flightNumber: '',
-        date: '',
-        from: '',
-        to: '',
-        gate: '',
-        seat: '',
-        class: '',
-        boardingTime: '',
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    const [passengerName, setPassengerName] = React.useState('John Doe');
+    const [flightNumber, setFlightNumber] = React.useState('SH 789');
+    const [date, setDate] = React.useState('15 JUL 2024');
+    const [from, setFrom] = React.useState('New York (JFK)');
+    const [to, setTo] = React.useState('London (LHR)');
+    const [gate, setGate] = React.useState('A22');
+    const [seat, setSeat] = React.useState('18A');
+    const [classType, setClassType] = React.useState('Economy');
+    const [boardingTime, setBoardingTime] = React.useState('09:30 AM');
+    const [ticketNo, setTicketNo] = React.useState('AB123456');
+    const [flightLeave, setFlightLeave] = React.useState('10:00 AM');
+    const [flightArrive, setFlightArrive] = React.useState('10:00 PM');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -142,8 +135,8 @@ const Playground = () => {
                                     <Input
                                         id="passengerName"
                                         name="passengerName"
-                                        value={formData.passengerName}
-                                        onChange={handleChange}
+                                        value={passengerName}
+                                        onChange={(e) => setPassengerName(e.target.value)}
                                         required
                                         maxLength={25}
                                     />
@@ -154,8 +147,8 @@ const Playground = () => {
                                         <Input
                                             id="flightNumber"
                                             name="flightNumber"
-                                            value={formData.flightNumber}
-                                            onChange={handleChange}
+                                            value={flightNumber}
+                                            onChange={(e) => setFlightNumber(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
@@ -166,8 +159,8 @@ const Playground = () => {
                                             id="date"
                                             name="date"
                                             type="date"
-                                            value={formData.date}
-                                            onChange={handleChange}
+                                            value={date}
+                                            onChange={(e) => setDate(e.target.value)}
                                             required
                                         />
                                     </div>
@@ -178,8 +171,8 @@ const Playground = () => {
                                         <Input
                                             id="from"
                                             name="from"
-                                            value={formData.from}
-                                            onChange={handleChange}
+                                            value={from}
+                                            onChange={(e) => setFrom(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
@@ -189,8 +182,8 @@ const Playground = () => {
                                         <Input
                                             id="to"
                                             name="to"
-                                            value={formData.to}
-                                            onChange={handleChange}
+                                            value={to}
+                                            onChange={(e) => setTo(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
@@ -202,8 +195,8 @@ const Playground = () => {
                                         <Input
                                             id="gate"
                                             name="gate"
-                                            value={formData.gate}
-                                            onChange={handleChange}
+                                            value={gate}
+                                            onChange={(e) => setGate(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
@@ -213,8 +206,8 @@ const Playground = () => {
                                         <Input
                                             id="seat"
                                             name="seat"
-                                            value={formData.seat}
-                                            onChange={handleChange}
+                                            value={seat}
+                                            onChange={(e) => setSeat(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
@@ -222,7 +215,7 @@ const Playground = () => {
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="class">Class</Label>
-                                    <Select name="class" onValueChange={(value) => handleChange({ target: { name: 'class', value } })}>
+                                    <Select name="class" onValueChange={(value) => setClassType(value)}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select class" />
                                         </SelectTrigger>
@@ -239,19 +232,13 @@ const Playground = () => {
                                         id="boardingTime"
                                         name="boardingTime"
                                         type="time"
-                                        value={formData.boardingTime}
-                                        onChange={handleChange}
+                                        value={boardingTime}
+                                        onChange={(e) => setBoardingTime(e.target.value)}
                                         required
                                     />
                                 </div>
                             </form>
                         </ScrollArea>
-                        <DialogFooter className='mr-3'>
-                            <DialogClose asChild>
-                                <Button variant="outline">Cancel</Button>
-                            </DialogClose>
-                            <Button type="submit" onClick={handleSubmit}>Submit</Button>
-                        </DialogFooter>
                     </DialogContent>
 
                 </Dialog>
