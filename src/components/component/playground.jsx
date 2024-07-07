@@ -57,9 +57,25 @@ const Playground = () => {
     const [boardingMinute, setBoardingMinute] = React.useState('30');
     const [boardingAmpm, setBoardingAmpm] = React.useState('AM');
 
+    const [flightLeaveHour, setFlightLeaveHour] = React.useState('10');
+    const [flightLeaveMinute, setFlightLeaveMinute] = React.useState('00');
+    const [flightLeaveAmpm, setFlightLeaveAmpm] = React.useState('AM');
+
+    const [flightArriveHour, setFlightArriveHour] = React.useState('10');
+    const [flightArriveMinute, setFlightArriveMinute] = React.useState('00');
+    const [flightArriveAmpm, setFlightArriveAmpm] = React.useState('PM');
+
     useEffect(() => {
         setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
     }, [boardingHour, boardingMinute, boardingAmpm]);
+
+    useEffect(() => {
+        setFlightLeave(`${flightLeaveHour}:${flightLeaveMinute} ${flightLeaveAmpm}`);
+    }, [flightLeaveHour, flightLeaveMinute, flightLeaveAmpm]);
+
+    useEffect(() => {
+        setFlightArrive(`${flightArriveHour}:${flightArriveMinute} ${flightArriveAmpm}`);
+    }, [flightArriveHour, flightArriveMinute, flightArriveAmpm]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
