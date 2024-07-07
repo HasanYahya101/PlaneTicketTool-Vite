@@ -489,7 +489,7 @@ const Playground = () => {
                                 </DrawerDescription>
                             </DrawerHeader>
                             <ScrollArea className='h-full'>
-                                <form className="space-y-4 mr-6 ml-6 mb-4">
+                                <form className="space-y-4 mr-6 ml-6 mb-6">
                                     <div className="space-y-2">
                                         <Label htmlFor="passengerName">Passenger Name</Label>
                                         <Input
