@@ -181,193 +181,142 @@ const Playground = () => {
                 </div>
             </div>
             <div className='flex justify-center'>
-                <Dialog>
-                    <DialogTrigger>
-                        <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
-                            <Edit className="w-5 h-5 mr-2" />
-                            Edit Ticket
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent className="h-[86vh] mt-1 mb-2">
-                        <DialogHeader>
-                            <DialogTitle>Flight Boarding Pass</DialogTitle>
-                            <DialogDescription>Enter or edit your flight details below</DialogDescription>
-                        </DialogHeader>
-                        <ScrollArea className='h-full'>
-                            <form className="space-y-4 mr-6 ml-6 mb-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="passengerName">Passenger Name</Label>
-                                    <Input
-                                        id="passengerName"
-                                        name="passengerName"
-                                        value={passengerName}
-                                        onChange={(e) => setPassengerName(e.target.value)}
-                                        required
-                                        maxLength={25}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
+                {isDesktop ? (
+                    <Dialog>
+                        <DialogTrigger>
+                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
+                                <Edit className="w-5 h-5 mr-2" />
+                                Edit Ticket
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className="h-[86vh] mt-1 mb-2">
+                            <DialogHeader>
+                                <DialogTitle>Flight Boarding Pass</DialogTitle>
+                                <DialogDescription>Enter or edit your flight details below</DialogDescription>
+                            </DialogHeader>
+                            <ScrollArea className='h-full'>
+                                <form className="space-y-4 mr-6 ml-6 mb-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="flightNumber">Flight Number</Label>
+                                        <Label htmlFor="passengerName">Passenger Name</Label>
                                         <Input
-                                            id="flightNumber"
-                                            name="flightNumber"
-                                            value={flightNumber}
-                                            onChange={(e) => setFlightNumber(e.target.value)}
+                                            id="passengerName"
+                                            name="passengerName"
+                                            value={passengerName}
+                                            onChange={(e) => setPassengerName(e.target.value)}
                                             required
                                             maxLength={25}
                                         />
                                     </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="flightNumber">Flight Number</Label>
+                                            <Input
+                                                id="flightNumber"
+                                                name="flightNumber"
+                                                value={flightNumber}
+                                                onChange={(e) => setFlightNumber(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="date">Date</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full justify-start text-left font-normal">
+                                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                                        {dateField ? format(dateField, 'PPP') : <span>Select date</span>}
+                                                    </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={dateField}
+                                                        onSelect={setDateField}
+                                                        onValueChange={setDateField}
+                                                        onChange={setDateField}
+                                                        initialFocus
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="from">From</Label>
+                                            <Input
+                                                id="from"
+                                                name="from"
+                                                value={from}
+                                                onChange={(e) => setFrom(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="to">To</Label>
+                                            <Input
+                                                id="to"
+                                                name="to"
+                                                value={to}
+                                                onChange={(e) => setTo(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="gate">Gate</Label>
+                                            <Input
+                                                id="gate"
+                                                name="gate"
+                                                value={gate}
+                                                onChange={(e) => setGate(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="seat">Seat</Label>
+                                            <Input
+                                                id="seat"
+                                                name="seat"
+                                                value={seat}
+                                                onChange={(e) => setSeat(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="space-y-2">
-                                        <Label htmlFor="date">Date</Label>
+                                        <Label htmlFor="class">Class</Label>
+                                        <Select defaultValue={`${classType}`} name="class" onValueChange={(value) => setClassType(value)}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder={`${classType}`} />
+                                            </SelectTrigger>
+                                            <SelectContent
+                                            >
+                                                <SelectItem value="Economy">Economy</SelectItem>
+                                                <SelectItem value="Business">Business Class</SelectItem>
+                                                <SelectItem value="First">First Class</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="boardingTime">Boarding Time</Label>
                                         <Popover>
                                             <PopoverTrigger asChild>
-                                                <Button variant="outline" className="w-full justify-start text-left font-normal">
-                                                    <CalendarIcon className="mr-2 h-4 w-4" />
-                                                    {dateField ? format(dateField, 'PPP') : <span>Select date</span>}
-                                                </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="w-auto p-0">
-                                                <Calendar
-                                                    mode="single"
-                                                    selected={dateField}
-                                                    onSelect={setDateField}
-                                                    onValueChange={setDateField}
-                                                    onChange={setDateField}
-                                                    initialFocus
-                                                />
-                                            </PopoverContent>
-                                        </Popover>
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="from">From</Label>
-                                        <Input
-                                            id="from"
-                                            name="from"
-                                            value={from}
-                                            onChange={(e) => setFrom(e.target.value)}
-                                            required
-                                            maxLength={25}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="to">To</Label>
-                                        <Input
-                                            id="to"
-                                            name="to"
-                                            value={to}
-                                            onChange={(e) => setTo(e.target.value)}
-                                            required
-                                            maxLength={25}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="gate">Gate</Label>
-                                        <Input
-                                            id="gate"
-                                            name="gate"
-                                            value={gate}
-                                            onChange={(e) => setGate(e.target.value)}
-                                            required
-                                            maxLength={25}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="seat">Seat</Label>
-                                        <Input
-                                            id="seat"
-                                            name="seat"
-                                            value={seat}
-                                            onChange={(e) => setSeat(e.target.value)}
-                                            required
-                                            maxLength={25}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="class">Class</Label>
-                                    <Select defaultValue={`${classType}`} name="class" onValueChange={(value) => setClassType(value)}>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder={`${classType}`} />
-                                        </SelectTrigger>
-                                        <SelectContent
-                                        >
-                                            <SelectItem value="Economy">Economy</SelectItem>
-                                            <SelectItem value="Business">Business Class</SelectItem>
-                                            <SelectItem value="First">First Class</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="boardingTime">Boarding Time</Label>
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <Button variant="outline" className="w-full">{boardingTime}</Button>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-80">
-                                            <div className="grid gap-4">
-                                                <h4 className="font-medium leading-none">Select Time</h4>
-                                                <div className="grid grid-cols-3 gap-2">
-                                                    <Select onValueChange={setBoardingHour} defaultValue={boardingHour}
-                                                    >
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder={`${boardingHour}`} />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            {hours.map((h) => (
-                                                                <SelectItem key={h} value={h.toString()}>
-                                                                    {h}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                    <Select onValueChange={setBoardingMinute} defaultValue={boardingMinute}
-                                                    >
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder={`${boardingMinute}`} />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            {minutes.map((m) => (
-                                                                <SelectItem key={m} value={m.toString().padStart(2, '0')}>
-                                                                    {m.toString().padStart(2, '0')}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                    <Select onValueChange={setBoardingAmpm} defaultValue={boardingAmpm}
-                                                    >
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder={`${boardingAmpm}`} />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="AM">AM</SelectItem>
-                                                            <SelectItem value="PM">PM</SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </div>
-                                            </div>
-                                        </PopoverContent>
-                                    </Popover>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="leavingTime">Leaving Time</Label>
-                                        <Popover>
-                                            <PopoverTrigger asChild>
-                                                <Button variant="outline" className="w-full">{flightLeave}</Button>
+                                                <Button variant="outline" className="w-full">{boardingTime}</Button>
                                             </PopoverTrigger>
                                             <PopoverContent className="w-80">
                                                 <div className="grid gap-4">
                                                     <h4 className="font-medium leading-none">Select Time</h4>
                                                     <div className="grid grid-cols-3 gap-2">
-                                                        <Select onValueChange={setFlightLeaveHour} defaultValue={flightLeaveHour}
+                                                        <Select onValueChange={setBoardingHour} defaultValue={boardingHour}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightLeaveHour}`} />
+                                                                <SelectValue placeholder={`${boardingHour}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {hours.map((h) => (
@@ -377,10 +326,10 @@ const Playground = () => {
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
-                                                        <Select onValueChange={setFlightLeaveMinute} defaultValue={flightLeaveMinute}
+                                                        <Select onValueChange={setBoardingMinute} defaultValue={boardingMinute}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightLeaveMinute}`} />
+                                                                <SelectValue placeholder={`${boardingMinute}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {minutes.map((m) => (
@@ -390,10 +339,10 @@ const Playground = () => {
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
-                                                        <Select onValueChange={setFlightLeaveAmpm} defaultValue={flightLeaveAmpm}
+                                                        <Select onValueChange={setBoardingAmpm} defaultValue={boardingAmpm}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightLeaveAmpm}`} />
+                                                                <SelectValue placeholder={`${boardingAmpm}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 <SelectItem value="AM">AM</SelectItem>
@@ -405,20 +354,263 @@ const Playground = () => {
                                             </PopoverContent>
                                         </Popover>
                                     </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="leavingTime">Leaving Time</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full">{flightLeave}</Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-80">
+                                                    <div className="grid gap-4">
+                                                        <h4 className="font-medium leading-none">Select Time</h4>
+                                                        <div className="grid grid-cols-3 gap-2">
+                                                            <Select onValueChange={setFlightLeaveHour} defaultValue={flightLeaveHour}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveHour}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {hours.map((h) => (
+                                                                        <SelectItem key={h} value={h.toString()}>
+                                                                            {h}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightLeaveMinute} defaultValue={flightLeaveMinute}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveMinute}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {minutes.map((m) => (
+                                                                        <SelectItem key={m} value={m.toString().padStart(2, '0')}>
+                                                                            {m.toString().padStart(2, '0')}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightLeaveAmpm} defaultValue={flightLeaveAmpm}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveAmpm}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="AM">AM</SelectItem>
+                                                                    <SelectItem value="PM">PM</SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="arrivalTime">Arrival Time</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full">{flightArrive}</Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-80">
+                                                    <div className="grid gap-4">
+                                                        <h4 className="font-medium leading-none">Select Time</h4>
+                                                        <div className="grid grid-cols-3 gap-2">
+                                                            <Select onValueChange={setFlightArriveHour} defaultValue={flightArriveHour}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveHour}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {hours.map((h) => (
+                                                                        <SelectItem key={h} value={h.toString()}>
+                                                                            {h}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightArriveMinute} defaultValue={flightArriveMinute}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveMinute}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {minutes.map((m) => (
+                                                                        <SelectItem key={m} value={m.toString().padStart(2, '0')}>
+                                                                            {m.toString().padStart(2, '0')}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightArriveAmpm} defaultValue={flightArriveAmpm}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveAmpm}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="AM">AM</SelectItem>
+                                                                    <SelectItem value="PM">PM</SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                    </div>
                                     <div className="space-y-2">
-                                        <Label htmlFor="arrivalTime">Arrival Time</Label>
+                                        <Label htmlFor="ticketNo">Ticket No.</Label>
+                                        <Input
+                                            id="ticketNo"
+                                            name="ticketNo"
+                                            value={ticketNo}
+                                            onChange={(e) => setTicketNo(e.target.value)}
+                                            required
+                                            maxLength={25}
+                                        />
+                                    </div>
+                                </form>
+                            </ScrollArea>
+                        </DialogContent>
+                    </Dialog>
+                ) : (
+                    <Drawer>
+                        <DrawerTrigger>
+                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
+                                <Edit className="w-5 h-5 mr-2" />
+                                Edit Ticket
+                            </Button>
+                        </DrawerTrigger>
+                        <DrawerContent className="h-[70vh] mt-1 mb-2">
+                            <DrawerHeader>
+                                <DrawerTitle>Flight Boarding Pass</DrawerTitle>
+                                <DrawerDescription>
+                                    Enter or edit your flight details below
+                                </DrawerDescription>
+                            </DrawerHeader>
+                            <ScrollArea className='h-full'>
+                                <form className="space-y-4 mr-6 ml-6 mb-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="passengerName">Passenger Name</Label>
+                                        <Input
+                                            id="passengerName"
+                                            name="passengerName"
+                                            value={passengerName}
+                                            onChange={(e) => setPassengerName(e.target.value)}
+                                            required
+                                            maxLength={25}
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="flightNumber">Flight Number</Label>
+                                            <Input
+                                                id="flightNumber"
+                                                name="flightNumber"
+                                                value={flightNumber}
+                                                onChange={(e) => setFlightNumber(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="date">Date</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full justify-start text-left font-normal">
+                                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                                        {dateField ? format(dateField, 'PPP') : <span>Select date</span>}
+                                                    </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={dateField}
+                                                        onSelect={setDateField}
+                                                        onValueChange={setDateField}
+                                                        onChange={setDateField}
+                                                        initialFocus
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="from">From</Label>
+                                            <Input
+                                                id="from"
+                                                name="from"
+                                                value={from}
+                                                onChange={(e) => setFrom(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="to">To</Label>
+                                            <Input
+                                                id="to"
+                                                name="to"
+                                                value={to}
+                                                onChange={(e) => setTo(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="gate">Gate</Label>
+                                            <Input
+                                                id="gate"
+                                                name="gate"
+                                                value={gate}
+                                                onChange={(e) => setGate(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="seat">Seat</Label>
+                                            <Input
+                                                id="seat"
+                                                name="seat"
+                                                value={seat}
+                                                onChange={(e) => setSeat(e.target.value)}
+                                                required
+                                                maxLength={25}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="class">Class</Label>
+                                        <Select defaultValue={`${classType}`} name="class" onValueChange={(value) => setClassType(value)}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder={`${classType}`} />
+                                            </SelectTrigger>
+                                            <SelectContent
+                                            >
+                                                <SelectItem value="Economy">Economy</SelectItem>
+                                                <SelectItem value="Business">Business Class</SelectItem>
+                                                <SelectItem value="First">First Class</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="boardingTime">Boarding Time</Label>
                                         <Popover>
                                             <PopoverTrigger asChild>
-                                                <Button variant="outline" className="w-full">{flightArrive}</Button>
+                                                <Button variant="outline" className="w-full">{boardingTime}</Button>
                                             </PopoverTrigger>
                                             <PopoverContent className="w-80">
                                                 <div className="grid gap-4">
                                                     <h4 className="font-medium leading-none">Select Time</h4>
                                                     <div className="grid grid-cols-3 gap-2">
-                                                        <Select onValueChange={setFlightArriveHour} defaultValue={flightArriveHour}
+                                                        <Select onValueChange={setBoardingHour} defaultValue={boardingHour}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightArriveHour}`} />
+                                                                <SelectValue placeholder={`${boardingHour}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {hours.map((h) => (
@@ -428,10 +620,10 @@ const Playground = () => {
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
-                                                        <Select onValueChange={setFlightArriveMinute} defaultValue={flightArriveMinute}
+                                                        <Select onValueChange={setBoardingMinute} defaultValue={boardingMinute}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightArriveMinute}`} />
+                                                                <SelectValue placeholder={`${boardingMinute}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 {minutes.map((m) => (
@@ -441,10 +633,10 @@ const Playground = () => {
                                                                 ))}
                                                             </SelectContent>
                                                         </Select>
-                                                        <Select onValueChange={setFlightArriveAmpm} defaultValue={flightArriveAmpm}
+                                                        <Select onValueChange={setBoardingAmpm} defaultValue={boardingAmpm}
                                                         >
                                                             <SelectTrigger>
-                                                                <SelectValue placeholder={`${flightArriveAmpm}`} />
+                                                                <SelectValue placeholder={`${boardingAmpm}`} />
                                                             </SelectTrigger>
                                                             <SelectContent>
                                                                 <SelectItem value="AM">AM</SelectItem>
@@ -456,23 +648,126 @@ const Playground = () => {
                                             </PopoverContent>
                                         </Popover>
                                     </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="ticketNo">Ticket No.</Label>
-                                    <Input
-                                        id="ticketNo"
-                                        name="ticketNo"
-                                        value={ticketNo}
-                                        onChange={(e) => setTicketNo(e.target.value)}
-                                        required
-                                        maxLength={25}
-                                    />
-                                </div>
-                            </form>
-                        </ScrollArea>
-                    </DialogContent>
-
-                </Dialog>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="leavingTime">Leaving Time</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full">{flightLeave}</Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-80">
+                                                    <div className="grid gap-4">
+                                                        <h4 className="font-medium leading-none">Select Time</h4>
+                                                        <div className="grid grid-cols-3 gap-2">
+                                                            <Select onValueChange={setFlightLeaveHour} defaultValue={flightLeaveHour}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveHour}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {hours.map((h) => (
+                                                                        <SelectItem key={h} value={h.toString()}>
+                                                                            {h}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightLeaveMinute} defaultValue={flightLeaveMinute}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveMinute}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {minutes.map((m) => (
+                                                                        <SelectItem key={m} value={m.toString().padStart(2, '0')}>
+                                                                            {m.toString().padStart(2, '0')}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightLeaveAmpm} defaultValue={flightLeaveAmpm}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightLeaveAmpm}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="AM">AM</SelectItem>
+                                                                    <SelectItem value="PM">PM</SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="arrivalTime">Arrival Time</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button variant="outline" className="w-full">{flightArrive}</Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-80">
+                                                    <div className="grid gap-4">
+                                                        <h4 className="font-medium leading-none">Select Time</h4>
+                                                        <div className="grid grid-cols-3 gap-2">
+                                                            <Select onValueChange={setFlightArriveHour} defaultValue={flightArriveHour}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveHour}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {hours.map((h) => (
+                                                                        <SelectItem key={h} value={h.toString()}>
+                                                                            {h}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightArriveMinute} defaultValue={flightArriveMinute}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveMinute}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {minutes.map((m) => (
+                                                                        <SelectItem key={m} value={m.toString().padStart(2, '0')}>
+                                                                            {m.toString().padStart(2, '0')}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                            <Select onValueChange={setFlightArriveAmpm} defaultValue={flightArriveAmpm}
+                                                            >
+                                                                <SelectTrigger>
+                                                                    <SelectValue placeholder={`${flightArriveAmpm}`} />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="AM">AM</SelectItem>
+                                                                    <SelectItem value="PM">PM</SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </PopoverContent>
+                                            </Popover>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="ticketNo">Ticket No.</Label>
+                                        <Input
+                                            id="ticketNo"
+                                            name="ticketNo"
+                                            value={ticketNo}
+                                            onChange={(e) => setTicketNo(e.target.value)}
+                                            required
+                                            maxLength={25}
+                                        />
+                                    </div>
+                                </form>
+                            </ScrollArea>
+                        </DrawerContent>
+                    </Drawer>
+                )}
 
                 <Button
                     onClick={downloadTicket}
