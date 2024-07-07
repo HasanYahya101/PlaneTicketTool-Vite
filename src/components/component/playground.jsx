@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { Plane, ArrowRight } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import { format } from 'date-fns';
 import {
     Drawer,
     DrawerClose,
@@ -66,6 +69,16 @@ const Playground = () => {
     const [flightArriveAmpm, setFlightArriveAmpm] = React.useState('PM');
 
     useEffect(() => {
+        // on change of date field, update the date string
+        if (dateField) {
+            setDate(format(dateField, 'dd MMM yyyy').toUpperCase());
+        }
+        else {
+            setDate('No date selected');
+        }
+    }, [dateField]);
+
+    useEffect(() => {
         setBoardingTime(`${boardingHour}:${boardingMinute} ${boardingAmpm}`);
     }, [boardingHour, boardingMinute, boardingAmpm]);
 
@@ -111,7 +124,7 @@ const Playground = () => {
                     </div>
                     <div className='text-end ml-auto'>
                         <p className="text-sm text-gray-500">Date</p>
-                        <p className="text-lg font-semibold">{gate}</p>
+                        <p className="text-lg font-semibold">{date}</p>
                     </div>
                 </div>
 
@@ -163,7 +176,7 @@ const Playground = () => {
                             <DialogDescription>Enter or edit your flight details below</DialogDescription>
                         </DialogHeader>
                         <ScrollArea className='h-full'>
-                            <form onSubmit={handleSubmit} className="space-y-4 mr-4 ml-4 mb-4">
+                            <form onSubmit={handleSubmit} className="space-y-4 mr-6 ml-6 mb-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="passengerName">Passenger Name</Label>
                                     <Input
@@ -189,14 +202,24 @@ const Playground = () => {
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="date">Date</Label>
-                                        <Input
-                                            id="date"
-                                            name="date"
-                                            type="date"
-                                            value={date}
-                                            onChange={(e) => setDate(e.target.value)}
-                                            required
-                                        />
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <Button variant="outline" className="w-full justify-start text-left font-normal">
+                                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                                    {dateField ? format(dateField, 'PPP') : <span>Select date</span>}
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0">
+                                                <Calendar
+                                                    mode="single"
+                                                    selected={dateField}
+                                                    onSelect={setDateField}
+                                                    onValueChange={setDateField}
+                                                    onChange={setDateField}
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
