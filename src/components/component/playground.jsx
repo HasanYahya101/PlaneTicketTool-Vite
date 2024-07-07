@@ -62,55 +62,55 @@ const Playground = () => {
                     </div>
                     <div className="text-right">
                         <p className="text-sm text-gray-500">Ticket No.</p>
-                        <p className="text-lg font-semibold">AB123456</p>
+                        <p className="text-lg font-semibold">{ticketNo}</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-6 mb-6">
                     <div className='text-start'>
                         <p className="text-sm text-gray-500">Passenger Name</p>
-                        <p className="text-lg font-semibold">John Doe</p>
+                        <p className="text-lg font-semibold">{passengerName}</p>
                     </div>
                     <div className='text-center'>
                         <p className="text-sm text-gray-500">Flight</p>
-                        <p className="text-lg font-semibold">SH 789</p>
+                        <p className="text-lg font-semibold">{flightNumber}</p>
                     </div>
                     <div className='text-end ml-auto'>
                         <p className="text-sm text-gray-500">Date</p>
-                        <p className="text-lg font-semibold">15 JUL 2024</p>
+                        <p className="text-lg font-semibold">{gate}</p>
                     </div>
                 </div>
 
                 <div className="flex justify-between items-center mb-6">
                     <div className="text-center">
                         <p className="text-sm text-gray-500">From</p>
-                        <p className="text-xl font-bold">New York (JFK)</p>
-                        <p className="text-lg">10:00 AM</p>
+                        <p className="text-xl font-bold">{from}</p>
+                        <p className="text-lg">{flightLeave}</p>
                     </div>
                     <ArrowRight className="w-14 h-14 text-blue-500" />
                     <div className="text-center">
                         <p className="text-sm text-gray-500">To</p>
-                        <p className="text-xl font-bold">London (LHR)</p>
-                        <p className="text-lg">10:00 PM</p>
+                        <p className="text-xl font-bold">{to}</p>
+                        <p className="text-lg">{flightArrive}</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-4 gap-4">
                     <div className='text-left'>
                         <p className="text-sm text-gray-500">Gate</p>
-                        <p className="text-lg font-semibold">A22</p>
+                        <p className="text-lg font-semibold">{gate}</p>
                     </div>
                     <div className='text-center'>
                         <p className="text-sm text-gray-500">Seat</p>
-                        <p className="text-lg font-semibold">18A</p>
+                        <p className="text-lg font-semibold">{seat}</p>
                     </div>
                     <div className='text-center'>
                         <p className="text-sm text-gray-500">Class</p>
-                        <p className="text-lg font-semibold">Economy</p>
+                        <p className="text-lg font-semibold">{classType}</p>
                     </div>
                     <div className='text-right'>
                         <p className="text-sm text-gray-500">Boarding Time</p>
-                        <p className="text-lg font-semibold">09:30 AM</p>
+                        <p className="text-lg font-semibold">{boardingTime}</p>
                     </div>
                 </div>
 
@@ -235,6 +235,41 @@ const Playground = () => {
                                         value={boardingTime}
                                         onChange={(e) => setBoardingTime(e.target.value)}
                                         required
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="leavingTime">Leaving Time</Label>
+                                        <Input
+                                            id="leavingTime"
+                                            name="leavingTime"
+                                            type="time"
+                                            value={flightLeave}
+                                            onChange={(e) => setFlightLeave(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="arrivalTime">Arrival Time</Label>
+                                        <Input
+                                            id="arrivalTime"
+                                            name="arrivalTime"
+                                            type="time"
+                                            value={flightArrive}
+                                            onChange={(e) => setFlightArrive(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="ticketNo">Ticket No.</Label>
+                                    <Input
+                                        id="ticketNo"
+                                        name="ticketNo"
+                                        value={ticketNo}
+                                        onChange={(e) => setTicketNo(e.target.value)}
+                                        required
+                                        maxLength={25}
                                     />
                                 </div>
                             </form>
