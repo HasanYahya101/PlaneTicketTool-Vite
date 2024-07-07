@@ -90,12 +90,6 @@ const Playground = () => {
         setFlightArrive(`${flightArriveHour}:${flightArriveMinute} ${flightArriveAmpm}`);
     }, [flightArriveHour, flightArriveMinute, flightArriveAmpm]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Here you would typically send the data to a server or perform other actions
-    };
-
     return (
         <div className="mx-auto my-8 font-sans" >
             <div className="bg-white border shadow-lg rounded-lg p-6 max-w-3xl mx-auto my-8 font-sans">
@@ -179,7 +173,7 @@ const Playground = () => {
                             <DialogDescription>Enter or edit your flight details below</DialogDescription>
                         </DialogHeader>
                         <ScrollArea className='h-full'>
-                            <form onSubmit={handleSubmit} className="space-y-4 mr-6 ml-6 mb-4">
+                            <form className="space-y-4 mr-6 ml-6 mb-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="passengerName">Passenger Name</Label>
                                     <Input
