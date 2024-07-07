@@ -145,6 +145,7 @@ const Playground = () => {
                                         value={formData.passengerName}
                                         onChange={handleChange}
                                         required
+                                        maxLength={25}
                                     />
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
@@ -156,6 +157,7 @@ const Playground = () => {
                                             value={formData.flightNumber}
                                             onChange={handleChange}
                                             required
+                                            maxLength={25}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -179,6 +181,7 @@ const Playground = () => {
                                             value={formData.from}
                                             onChange={handleChange}
                                             required
+                                            maxLength={25}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -189,6 +192,7 @@ const Playground = () => {
                                             value={formData.to}
                                             onChange={handleChange}
                                             required
+                                            maxLength={25}
                                         />
                                     </div>
                                 </div>
@@ -201,6 +205,7 @@ const Playground = () => {
                                             value={formData.gate}
                                             onChange={handleChange}
                                             required
+                                            maxLength={25}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -211,6 +216,7 @@ const Playground = () => {
                                             value={formData.seat}
                                             onChange={handleChange}
                                             required
+                                            maxLength={25}
                                         />
                                     </div>
                                 </div>
@@ -240,7 +246,7 @@ const Playground = () => {
                                 </div>
                             </form>
                         </ScrollArea>
-                        <DialogFooter>
+                        <DialogFooter className='mr-3'>
                             <DialogClose asChild>
                                 <Button variant="outline">Cancel</Button>
                             </DialogClose>
