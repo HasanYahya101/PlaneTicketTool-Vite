@@ -123,7 +123,7 @@ const Playground = () => {
                     <DialogTrigger>
                         <Button className='mr-2'>Edit</Button>
                     </DialogTrigger>
-                    <DialogContent className="h-[86vh]">
+                    <DialogContent className="h-[86vh] mt-1 mb-2">
                         <DialogHeader>
                             <DialogTitle>Flight Boarding Pass</DialogTitle>
                             <DialogDescription>Enter or edit your flight details below</DialogDescription>
