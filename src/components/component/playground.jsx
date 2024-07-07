@@ -34,6 +34,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import html2canvas from 'html2canvas';
 
 const Playground = () => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
@@ -90,9 +91,29 @@ const Playground = () => {
         setFlightArrive(`${flightArriveHour}:${flightArriveMinute} ${flightArriveAmpm}`);
     }, [flightArriveHour, flightArriveMinute, flightArriveAmpm]);
 
+    const ticketRef = React.useRef(null);
+
+    const downloadTicket = () => {
+        const style = document.createElement('style');
+        document.head.appendChild(style);
+        style.sheet?.insertRule('body > div:last-child img { display: inline-block; }');
+
+        html2canvas(ticketRef.current
+            , { scale: 2, backgroundColor: null }
+        ).then(canvas => {
+            style.remove();
+            const link = document.createElement('a');
+            link.download = 'ticket.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
     return (
         <div className="mx-auto my-8 font-sans" >
-            <div className="bg-white border shadow-lg rounded-lg p-6 max-w-3xl mx-auto my-8 font-sans">
+            <div ref={ticketRef} className="bg-white border shadow-lg rounded-lg p-6 max-w-3xl mx-auto my-8 font-sans" id="ticket"
+                style={{ lineHeight: '0.5' }}
+            >
                 <div className="flex justify-between items-center border-b border-gray-200 pb-4 mb-4">
                     <div className="flex items-center">
                         <Plane className="w-10 h-10 text-blue-500 mr-4" />
@@ -454,6 +475,7 @@ const Playground = () => {
                 </Dialog>
 
                 <Button
+                    onClick={downloadTicket}
                     className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md ml-2"
                 >
                     <Download className="w-5 h-5 mr-2" />
