@@ -183,8 +183,8 @@ const Playground = () => {
             <div className='flex justify-center'>
                 {isDesktop ? (
                     <Dialog>
-                        <DialogTrigger>
-                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
+                        <DialogTrigger className='mr-4'>
+                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md'>
                                 <Edit className="w-5 h-5 mr-2" />
                                 Edit Ticket
                             </Button>
@@ -475,8 +475,8 @@ const Playground = () => {
                     </Dialog>
                 ) : (
                     <Drawer>
-                        <DrawerTrigger>
-                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md mr-2'>
+                        <DrawerTrigger className='mr-4'>
+                            <Button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md'>
                                 <Edit className="w-5 h-5 mr-2" />
                                 Edit Ticket
                             </Button>
@@ -771,7 +771,7 @@ const Playground = () => {
 
                 <Button
                     onClick={downloadTicket}
-                    className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md ml-2"
+                    className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 flex items-center transition duration-300 rounded-md"
                 >
                     <Download className="w-5 h-5 mr-2" />
                     Download Ticket
