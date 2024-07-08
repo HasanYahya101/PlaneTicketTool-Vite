@@ -21,6 +21,15 @@ This project was deployed to Github Pages and can be tested there. No servers or
 ![Screenshot 2024-07-08 050219](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/c0dab703-b993-4ecf-ae91-23fd8fd99e81)
 ![Screenshot 2024-07-08 050230](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/9a105723-85ea-45dd-9a05-fbf11de9813c)
 
+## Preview (Mobile)
+![Screenshot_20240707-200919](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/21d74b03-2fc2-4c0c-85c1-12ac296b2640)
+![Screenshot_20240707-200922](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/76dbb6de-b01f-460c-814e-3e1d38a6518d)
+![Screenshot_20240707-200927](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/e90016d7-4f50-43af-a56e-beca695b72ab)
+![Screenshot_20240707-200932](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/baf64fef-cb9f-45bd-a6ef-d20c17f1ea2e)
+![Screenshot_20240707-200937](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/9dc7a3a8-a6d2-476d-878a-4f7d87f49ae7)
+![Screenshot_20240707-200942](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/d4153b72-013b-4e55-b1f2-df03c5df0ab5)
+![Screenshot_20240707-200958](https://github.com/HasanYahya101/PlaneTicketTool-Vite/assets/118683092/f9eeb7d3-be34-4296-974e-fd3657fb916a)
+
 ## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
